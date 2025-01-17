@@ -1,18 +1,23 @@
  <h1 align="center">Rota segura</h1>
  
  <div align="center">
-  <img alt="banner" title="banner" src="./src/img/banner.png">
+  <img alt="banner" title="banner" src="banner.png">
 </div>
 
-> Aplicação que busca por rotas seguras para ciclistas e pedestres
+> Criação própria do protótipo da aplicação Rota Segura, utilizando o Figma
 
 <br><br>
+
+## 🚀 Sobre o projeto
+<p>A aplicação irá mostrar rotas baseadas no local de origem e destino do usuario. Serão consumidas APIs para fazer a busca e o filtro das rotas.   </p>
+
+<br>
 
   ## 📝 Ajustes e melhorias
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [ ] Desenvolvimento das telas
-- [ ] Ligação com API's
+- [ ] Ligação com APIs
 
 <br><br>
 
