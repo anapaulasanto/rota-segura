@@ -1,13 +1,15 @@
-import { GoogleGenAI } from "@google/genai";
+import express from 'express';
+import 'dotenv/config';
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyB6BdWUfR46t7S6j2AFth7YR1nr9CbECT4" });
+const app = express();
+const { port } = process.env
 
-async function main() {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: "How does AI work?",
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+})
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Hello World',
   });
-  console.log(response.text);
-}
-
-await main();
+})

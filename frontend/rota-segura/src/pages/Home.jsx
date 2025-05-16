@@ -1,14 +1,12 @@
-import Footer from "../components/Footer";
-import ContentForm from "../components/ContentForm";
 import Header from "../components/Header";
 import React from "react";
+import SectionAboutHome from "@/components/SectionAboutHome";
 
 const Home = () => {
   return (
     <>
-    <Header />
-    <ContentForm />
-    <Footer />
+      <Header />
+      <SectionAboutHome />
     </>
   )
 };

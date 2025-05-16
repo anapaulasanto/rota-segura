@@ -2,7 +2,7 @@ import Nav from "./components/Nav"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import LoginForm from "./pages/LoginForm"
+import Rota from "./pages/Rota"
 
 function App() {
   return (
@@ -10,9 +10,9 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/rota-segura" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/rota-segura/login" element={<Login />} />
-          <Route path="/rota-segura/loginForm" element={<LoginForm />} />
+          <Route path="/rota-segura/buscar" element={<Rota />} />
         </Routes>
       </BrowserRouter>
     </div>
