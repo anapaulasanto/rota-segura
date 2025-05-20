@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@google/genai": "^0.13.0",
+    "@prisma/client": "^6.8.2",
     "dotenv": "^16.5.0",
     "express": "^5.1.0"
   },
@@ -9,10 +10,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch ./app.js"
+    "start": "node --watch ./src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prisma": "^6.8.2"
+  }
 }
