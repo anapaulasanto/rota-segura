@@ -11,7 +11,7 @@
     --font-about: "JetBrains Mono", monospace;
 }
 
-* {
+body {
     overflow-x: hidden;
 }
 
