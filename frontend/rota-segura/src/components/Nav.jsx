@@ -17,7 +17,7 @@ const Nav = ({ user }) => {
                         </div>
                     </Link>
                 </div>
-                <Link to={ user ? "rota-segura/profile" : "/rota-segura/login"}>
+                <Link to={ user ? "rota-segura/user" : "/rota-segura/profile"}>
                     <div className='flex items-center gap-1 border overflow-y-hidden hover:bg-gray-50  rounded-full max-w-30 h-10 grow shadow-sm mb-1 px-2 bg-white max-sm:ml-10'>
                         {user ? (
                             <>

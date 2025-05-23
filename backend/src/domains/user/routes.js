@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import { prisma } from '../../config/db.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 const router = Router();
 const bycryptSalt = bcrypt.genSaltSync();
+const { JWT_SECRET_KEY } = process.env;
 
 router.get('/', async (req, res) => {
     try {
@@ -14,6 +17,24 @@ router.get('/', async (req, res) => {
         res.status(500).json(error);
     }
 })
+
+router.get('/profile', async (req, res) => {
+    const { token } = req.cookies;
+    console.log(token);
+
+    if (token) {
+        try {
+            const userAutenticated = jwt.verify(token, JWT_SECRET_KEY);
+            res.json(userAutenticated);
+
+        } catch (error) {
+            res.status(401).json({ message: 'Token inválido ou expirado' });
+        }
+    } else {
+        res.json(null)
+    }
+
+});
 
 router.get('/:id', async (req, res) => {
     try {
@@ -39,6 +60,10 @@ router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
     const encryptedPassword = bcrypt.hashSync(password, bycryptSalt);
 
+    if (!name || !email || !password) {
+        return res.status(400).json({ message: 'Preencha os campos obrigatórios' });
+    }
+
     try {
         const user = await prisma.user.create({
             data: {
@@ -47,10 +72,6 @@ router.post('/signup', async (req, res) => {
                 password: encryptedPassword
             }
         })
-
-        if (!name || !email || !password) {
-            return res.status(400).json({ message: 'Preencha os campos obrigatórios' });
-        }
         res.status(201).json(user);
 
     } catch (error) {
@@ -69,13 +90,22 @@ router.post('/login', async (req, res) => {
         })
 
         if (user) {
-            const { name, email } = user;
+            const { name, id } = user; //retorna como response apenas esses dado, e nao o user completo com email e senha
             const isPasswordValid = bcrypt.compareSync(password, user.password);
-            isPasswordValid ? res.status(200).json({ name, email })
-                : res.status(401).json({ message: 'Senha incorreta.' });
-        }
-        res.status(404).json({ message: 'Usuário não encontrado' });
 
+            if (isPasswordValid) {
+                const objUser = { name, email, id } //dados para utilizar os coookies
+                const token = jwt.sign(objUser, JWT_SECRET_KEY)
+
+                res.cookie('token', token).json(user)
+                console.log(token);
+
+            } else {
+                res.status(401).json({ message: 'Senha incorreta.' });
+            }
+        } else {
+            res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao fazer login: ' + error });
     }

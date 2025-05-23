@@ -4,20 +4,33 @@ import Login from "./pages/Login"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Rota from "./pages/Rota"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Toaster } from 'react-hot-toast';
 import SignUp from "./pages/SignUp"
 
-
 axios.defaults.baseURL = import.meta.env.VITE_AXIOS_BASE_URL
+axios.defaults.withCredentials = true //habilita o envio de cookies entre domínios
 
 function App() {
   const [user, setUser] = useState(null)
 
+  useEffect(() => {
+    const userIsLogged = async () => {
+      try {
+        const { data } = await axios.get("/users/profile")
+        setUser(data)
+
+      } catch (error) {
+        console.log('erro ao autenticar usuario no front: ' + error);
+      }
+    }
+    userIsLogged()
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
-        <Nav user={user}/>
+        <Nav user={user} />
 
         <Routes>
           <Route path="/" element={<Home />} />

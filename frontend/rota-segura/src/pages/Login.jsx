@@ -10,7 +10,6 @@ const Login = ({ user, setUser }) => {
     const navigate = useNavigate();
     const [redirect, setRedirect] = useState(false)
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null)
@@ -26,6 +25,7 @@ const Login = ({ user, setUser }) => {
 
             } catch (error) {
                 setError("Email ou senha inválidos")
+                console.log(error);  
             }
         } else {
             setError("Preencha todos os campos")
