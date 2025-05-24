@@ -98,8 +98,6 @@ router.post('/login', async (req, res) => {
                 const token = jwt.sign(objUser, JWT_SECRET_KEY)
 
                 res.cookie('token', token).json(user)
-                console.log(token);
-
             } else {
                 res.status(401).json({ message: 'Senha incorreta.' });
             }
