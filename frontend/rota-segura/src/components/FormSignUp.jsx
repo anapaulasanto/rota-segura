@@ -62,13 +62,13 @@ const FormSignUp = ({ submitFunction, error }) => {
 
                 <button
                     type="submit"
-                    className='bg-central rounded-full px-5 py-3 shadow-md w-2/4 mx-auto my-6 shadow-neutral-400 cursor-pointer hover:bg-central/70 hover:border-neutral-300 transition-all duration-200 ease-in-out'
+                    className='text-white text-center w-full bg-central rounded-full px-5 py-3 shadow-md mx-auto mt-6 shadow-neutral-400 cursor-pointer hover:bg-central/70 hover:border-neutral-300 transition-all duration-200 ease-in-out max-sm:py-4 text-xl'
 
                 >Cadastrar
                 </button>
             </form>
             {error && <p className="text-red-500">{error}</p>}
-            <p className="tracking-widest text-neutral-700">Já possui conta? <Link to="/rota-segura/login"><span className="text-central underline decoration-central">Faça o login</span></Link></p>
+            <p className="tracking-widest pt-6 text-neutral-700 max-sm:text-lg max-sm:w-[200px] text-center">Já possui conta? <Link to="/rota-segura/login"><span className="text-central underline decoration-central">Faça o login</span></Link></p>
         </div>
     )
 };

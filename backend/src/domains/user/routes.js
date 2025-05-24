@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
 
 router.get('/profile', async (req, res) => {
     const { token } = req.cookies;
-    console.log(token);
 
     if (token) {
         try {
@@ -72,10 +71,12 @@ router.post('/signup', async (req, res) => {
                 password: encryptedPassword
             }
         })
-        res.status(201).json(user);
+        
+        const token = jwt.sign(user, JWT_SECRET_KEY) //cria o token com os dados do usuario, faz um sign
+        res.cookie('token', token,).json(user) //cria o cookie, armazena com o token
 
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao criar usuário' });
+        res.status(500).json({ 'Erro ao criar usuário': error });
     }
 })
 
@@ -95,9 +96,9 @@ router.post('/login', async (req, res) => {
 
             if (isPasswordValid) {
                 const objUser = { name, email, id } //dados para utilizar os coookies
-                const token = jwt.sign(objUser, JWT_SECRET_KEY)
+                const token = jwt.sign(objUser, JWT_SECRET_KEY) //cria o token com os dados do usuario, faz um sign
 
-                res.cookie('token', token).json(user)
+                res.cookie('token', token).json(user) //cria o cookie, armazena com o token e retorna o usuario
             } else {
                 res.status(401).json({ message: 'Senha incorreta.' });
             }

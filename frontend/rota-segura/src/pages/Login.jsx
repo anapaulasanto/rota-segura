@@ -42,7 +42,7 @@ const Login = ({ user, setUser }) => {
                     <p className="font-title text-5xl w-1/2 text-center mx-auto py-8 ">Escolha rotas inteligentes, mova-se com segurança.</p>
                     <div className="w-2/5 flex flex-col items-center max-lg:w-3/5 max-sm:w-full">
                         <FormLogin submitFunction={submitFunction} error={error} />
-                        <p className="tracking-widest text-neutral-700">Não possui conta? <Link to="/rota-segura/registrar"><span className="text-central underline decoration-central">Registre-se</span></Link> agora.</p>
+                        <p className="tracking-widest text-neutral-700  max-sm:text-xl w-[300px] text-center">Não possui conta? <Link to="/rota-segura/sign-up"><span className="text-central underline decoration-central">Registre-se</span></Link> agora.</p>
                     </div>
                 </div>
             </div>

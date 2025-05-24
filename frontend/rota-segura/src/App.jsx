@@ -34,9 +34,9 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/rota-segura/search" element={<Rota />} />
           <Route path="/rota-segura/login" element={<Login user={user} setUser={setUser} />} />
-          <Route path="/rota-segura/buscar" element={<Rota />} />
-          <Route path="/rota-segura/registrar" element={<SignUp setUser={setUser} />} />
+          <Route path="/rota-segura/sign-up" element={<SignUp user={user} setUser={setUser} />} />
         </Routes>
       </BrowserRouter>
       <Toaster

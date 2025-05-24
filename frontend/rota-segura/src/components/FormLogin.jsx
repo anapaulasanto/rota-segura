@@ -41,7 +41,7 @@ const FormLogin = ({ submitFunction, error }) => {
 
                 <button
                     type="submit"
-                    className='bg-central rounded-full px-5 py-3 mb-20 shadow-md w-2/4 mx-auto my-6 shadow-neutral-400 cursor-pointer hover:bg-central/70 hover:border-neutral-300 transition-all duration-200 ease-in-out'
+                    className='bg-central text-white rounded-full px-5 py-3 mb-10 shadow-md w-full mx-auto mt-6 shadow-neutral-400 cursor-pointer hover:bg-central/70 hover:border-neutral-300 transition-all duration-200 ease-in-out max-sm:py-4 text-xl'
                 >Entrar
                 </button>
             </form>
