@@ -7,6 +7,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Toaster } from 'react-hot-toast';
 import SignUp from "./pages/SignUp"
+import Profile from "./pages/Profile"
 
 axios.defaults.baseURL = import.meta.env.VITE_AXIOS_BASE_URL
 axios.defaults.withCredentials = true //habilita o envio de cookies entre domínios
@@ -37,10 +38,11 @@ function App() {
           <Route path="/rota-segura/search" element={<Rota />} />
           <Route path="/rota-segura/login" element={<Login user={user} setUser={setUser} />} />
           <Route path="/rota-segura/sign-up" element={<SignUp user={user} setUser={setUser} />} />
+          <Route path="/rota-segura/profile/:section?" element={<Profile />} />
         </Routes>
       </BrowserRouter>
       <Toaster
-        position="top-center"
+        position="top-right"
         reverseOrder={false}
         toastOptions={{
           style: {

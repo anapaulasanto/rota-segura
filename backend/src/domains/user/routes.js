@@ -22,17 +22,15 @@ router.get('/profile', async (req, res) => {
     const { token } = req.cookies;
 
     if (token) {
-        try {
-            const userAutenticated = jwt.verify(token, JWT_SECRET_KEY);
-            res.json(userAutenticated);
-
-        } catch (error) {
-            res.status(401).json({ message: 'Token inválido ou expirado' });
-        }
+        jwt.verify(token, JWT_SECRET_KEY, {}, (error, userAutenticated) => { //verifica o token retornado do cookie, pode ter duas respostas, o erro ou o usuario autenticado
+            if (error) { //se der erro, retorna o erro
+                throw error
+            }
+            res.json(userAutenticated); //se achar o usuario relacionado ao token, retorna o usuario autenticado pro front
+        });
     } else {
-        res.json(null)
+        res.json(null) //se não tiver token (nao estiver logado), retorna um objeto nulo
     }
-
 });
 
 router.get('/:id', async (req, res) => {
@@ -71,12 +69,16 @@ router.post('/signup', async (req, res) => {
                 password: encryptedPassword
             }
         })
-        
-        const token = jwt.sign(user, JWT_SECRET_KEY) //cria o token com os dados do usuario, faz um sign
-        res.cookie('token', token,).json(user) //cria o cookie, armazena com o token
+
+        jwt.sign(user, JWT_SECRET_KEY, {}, (error, token) => { //cria o token para o usuario passado, faz um sign
+            if (error) {
+                throw error;
+            }
+            res.cookie('token', token,).json(user); //armazena o token no cookie, e retorna o usuario
+        });
 
     } catch (error) {
-        res.status(500).json({ 'Erro ao criar usuário': error });
+        throw error;
     }
 })
 
@@ -96,9 +98,10 @@ router.post('/login', async (req, res) => {
 
             if (isPasswordValid) {
                 const objUser = { name, email, id } //dados para utilizar os coookies
-                const token = jwt.sign(objUser, JWT_SECRET_KEY) //cria o token com os dados do usuario, faz um sign
 
+                const token = jwt.sign(objUser, JWT_SECRET_KEY)
                 res.cookie('token', token).json(user) //cria o cookie, armazena com o token e retorna o usuario
+
             } else {
                 res.status(401).json({ message: 'Senha incorreta.' });
             }
