@@ -29,7 +29,7 @@ const SectionAboutHome = () => {
                             <img src={imgIa} alt="Imagem de um braço de robô" />
                         </div>
                     </div>
-                    <Link to="/rota-segura/buscar">
+                    <Link to="/rota-segura/search">
                         <button className='bg-central cursor-pointer mb-10 rounded-full px-11 py-5 shadow-md hover:bg-yellow-600 hover:text-white shadow-neutral-600 max-xl:mt-10
                          max-xl:text-2xl max-sm:px-7 max-sm:py-5'>Buscar rotas</button>
                     </Link>
