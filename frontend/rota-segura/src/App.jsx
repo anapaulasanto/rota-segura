@@ -9,6 +9,10 @@ import SignUp from "./pages/SignUp"
 import Profile from "./pages/Profile"
 import SearchRoute from "./pages/SearchRoute"
 import ResultsRoute from "./pages/ResultsRoute"
+import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
+
+const MAPS_API_KEY = import.meta.env.VITE_MAPS_API_KEY;
+const LIBRARIES = ['geometry'];
 
 axios.defaults.baseURL = import.meta.env.VITE_AXIOS_BASE_URL
 axios.defaults.withCredentials = true //habilita o envio de cookies entre domínios
@@ -34,14 +38,16 @@ function App() {
       <BrowserRouter>
         <Nav user={user} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/rota-segura/search" element={<SearchRoute />} />
-          <Route path="/rota-segura/results" element={<ResultsRoute />} />
-          <Route path="/rota-segura/login" element={<Login user={user} setUser={setUser} />} />
-          <Route path="/rota-segura/sign-up" element={<SignUp user={user} setUser={setUser} />} />
-          <Route path="/rota-segura/profile/:section?" element={<Profile />} />
-        </Routes>
+        <LoadScript googleMapsApiKey={MAPS_API_KEY} libraries={LIBRARIES}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/rota-segura/search" element={<SearchRoute />} />
+            <Route path="/rota-segura/result" element={<ResultsRoute />} />
+            <Route path="/rota-segura/login" element={<Login user={user} setUser={setUser} />} />
+            <Route path="/rota-segura/sign-up" element={<SignUp user={user} setUser={setUser} />} />
+            <Route path="/rota-segura/profile/:section?" element={<Profile />} />
+          </Routes>
+        </LoadScript>
       </BrowserRouter>
       <Toaster
         position="top-right"

@@ -7,6 +7,7 @@
 
 @theme {
     --color-central: #E2BD6F;
+    --color-text-central:#B58F3D;
     --font-title: "Bricolage Grotesque", sans-serif;
     --font-about: "JetBrains Mono", monospace;
 }
