@@ -1,15 +1,20 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
+import { TbRoute } from "react-icons/tb";
+import { FiMapPin } from "react-icons/fi";
+import { TbClockHour3 } from "react-icons/tb";
+import { LuNavigation } from "react-icons/lu";
 
 const mapContainerStyle = {
     width: '100%',
-    height: '60vh',
+    height: '90vh',
+    borderRadius: '15px',
 };
 
 const ResultsRoute = () => {
     const location = useLocation();
-    const result = location.state?.routeDetails
+    const result = location.state?.route
 
     if (!result) {
         return (
@@ -23,42 +28,48 @@ const ResultsRoute = () => {
         );
     }
 
-    const leg = result.legs[0];
+    const leg = result.full_route_data.legs[0];
 
     return (
-            <section>
-                <div className="flex">
-                    <GoogleMap mapContainerStyle={mapContainerStyle} center={leg.start_location} zoom={14}>
-                        <Marker position={leg.start_location} />
-                        <Marker position={leg.end_location} />
-                        <Polyline
-                            path={google.maps.geometry.encoding.decodePath(result.overview_polyline.points)}
-                            options={{ strokeColor: "#007BFF", strokeWeight: 5 }}
-                        />
-                    </GoogleMap>
-                    <div className="bg-gray-50 p-4 rounded-lg h-[60vh] overflow-y-auto">
-                        <h2 className="text-2xl font-semibold mb-3">Instruções</h2>
-                        <div className="text-lg">
-                            <p><strong>Distância Total:</strong> {leg.distance.text}</p>
-                            <p className="mb-4"><strong>Duração Estimada:</strong> {leg.duration.text}</p>
+        <section className="bg-gray-100 p-5">
+            <div className="flex h-[90vh]">
+                <GoogleMap mapContainerStyle={mapContainerStyle} center={leg.start_location} zoom={14}>
+                    <Marker position={leg.start_location} />
+                    <Marker position={leg.end_location} />
+                    <Polyline
+                        path={google.maps.geometry.encoding.decodePath(result.full_route_data.overview_polyline.points)}
+                        options={{ strokeColor: "#007BFF", strokeWeight: 5 }}
+                    />
+                </GoogleMap>
+                <div className="flex flex-col gap-5 p-4 ">
+                    <div className="flex flex-col gap-4 bg-white p-4 py-6 w-5/6 rounded-2xl shadow-xl">
+                        <div className="flex items-center gap-2  text-neutral-700 ">
+                            <TbRoute className="w-[23px] h-[23px]" />
+                            <h1 className="text-xl w-4/5 font-bold">Via {result.summary} </h1>
+                        </div>
+                        <div className="flex justify-start gap-5">
+                            <p className="flex items-center gap-1 bg-neutral-200 rounded-md px-2 py-1 text-sm font-semibold"><FiMapPin />{leg.distance.text}</p>
+                            <p className="flex items-center gap-1 bg-neutral-200 rounded-md px-2 py-1 text-sm font-semibold"><TbClockHour3 />{leg.duration.text}</p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-4 bg-white p-4 py-6 w-5/6 rounded-2xl shadow-xl overflow-y-auto">
+                        <div className="flex items-center gap-1 mb-3 pb-3 border-b">
+                            <LuNavigation className="text-xl"/>
+                            <h2 className="text-2xl font-bold text-neutral-700">Instruções de navegação</h2>
                         </div>
                         <ol className="list-decimal list-inside space-y-3">
                             {leg.steps.map((step, index) => (
-                                <li key={index}
-                                    // A instrução vem com HTML (<b>, <div>), usamos dangerouslySetInnerHTML para renderizá-lo
-                                    dangerouslySetInnerHTML={{ __html: step.html_instructions }}
-                                />
+                                <div className="border p-3 rounded-lg">
+                                    <li key={index}
+                                        dangerouslySetInnerHTML={{ __html: step.html_instructions }}
+                                    />
+                                </div>
                             ))}
                         </ol>
                     </div>
                 </div>
-                {/* <p>{result.summary}</p>
-                <p>{result.duration.text}</p>
-                <p>{result.distance.text}</p>
-                <p>{result.full_route_data.start_adress}</p>
-                <p>{result.full_route_data.end_adress}</p>
-                <p>{result.full_route_data.legs}</p> */}
-            </section>
+            </div>
+        </section>
     )
 };
 

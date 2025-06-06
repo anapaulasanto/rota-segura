@@ -41,10 +41,9 @@ const SearchRoute = () => {
   }
 
   const handleSelectRoute = (route) => {
-    const routeDetails = route.full_route_data
-    console.log("route details:", routeDetails);
+    console.log("route details:", route);
     
-    navigate("/rota-segura/result", { state: {routeDetails: routeDetails} });
+    navigate("/rota-segura/result", { state: {route: route} });
   }
 
   return (
