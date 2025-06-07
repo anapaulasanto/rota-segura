@@ -9,7 +9,7 @@ const UserButton = ({ user }) => {
     return (
         <div>
             <Menu>
-                <MenuButton className='flex items-center gap-1 border overflow-y-hidden hover:bg-gray-50 cursor-pointer rounded-full max-w-30 h-10 grow shadow-sm mb-1 px-3 bg-white max-sm:ml-10 '>
+                <MenuButton className='flex items-center gap-1  overflow-y-hidden hover:bg-gray-50 cursor-pointer rounded-lg mt-2 max-w-32 h-10 grow shadow-md mb-1 px-4 bg-white max-sm:ml-10 '>
                     {user ? (
                         <>
                             <FaCircleUser className="w-[60px] text-neutral-600" />

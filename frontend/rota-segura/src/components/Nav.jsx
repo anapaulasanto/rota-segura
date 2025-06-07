@@ -14,7 +14,8 @@ const Nav = ({ user }) => {
                     </Link>
                     <Link to="/rota-segura/search" >
                         <div className='flex items-center gap-2 pt-3'>
-                            <p className='font-title text-amber-950 border-b-2 border-b-central hover:border-b-amber-300'>Buscar rota</p>
+                            <button className='bg-central cursor-pointer rounded-md mb-1 text-sm px-5 py-2 shadow-sm hover:opacity-95 hover:text-white shadow-neutral-600 max-xl:mt-10
+                         max-xl:text-2xl max-sm:px-7 max-sm:py-5'>Buscar rotas</button>
                         </div>
                     </Link>
                 </div>

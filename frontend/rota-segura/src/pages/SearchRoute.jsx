@@ -47,7 +47,7 @@ const SearchRoute = () => {
   }
 
   return (
-      <section className="bg-gray-100 w-full h-screen shadow-neutral-300">
+    <section className="bg-gray-100 w-full h-min-full shadow-neutral-300">
         <div className="flex flex-col items-center justify-center max-w-6xl mx-auto pb-20">
           <div className="flex flex-col items-center py-10 text-center font-semibold">
             <h1 className="text-5xl pb-6">Descubra a <span className="text-text-central">rota segura</span> para você</h1>
