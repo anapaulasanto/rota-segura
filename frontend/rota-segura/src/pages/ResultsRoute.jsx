@@ -5,10 +5,12 @@ import { TbRoute } from "react-icons/tb";
 import { FiMapPin } from "react-icons/fi";
 import { TbClockHour3 } from "react-icons/tb";
 import { LuNavigation } from "react-icons/lu";
+import { FaMagic } from "react-icons/fa";
+
 import axios from "axios";
 
 const mapContainerStyle = {
-    width: '100%',
+    width: '80%',
     height: '90vh',
     borderRadius: '15px',
 };
@@ -42,6 +44,10 @@ const ResultsRoute = () => {
             setIsLoading(false);
         }
     };
+
+    const handleAskAi = async (e) => {
+
+    }
 
     if (!currentRoute) {
         return (
@@ -102,7 +108,7 @@ const ResultsRoute = () => {
                             <p className="flex items-center gap-1 bg-neutral-200 rounded-md px-2 py-1 text-sm font-semibold"><TbClockHour3 />{leg.duration.text}</p>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4 bg-white p-4 py-6 w-5/6 rounded-2xl shadow-xl overflow-y-auto">
+                    <div className="flex flex-col gap-4 bg-white p-4 py-6 w-5/6 h-4/5 rounded-2xl shadow-xl overflow-y-auto">
                         <div className="flex items-center gap-1 mb-3 pb-3 border-b">
                             <LuNavigation className="text-xl" />
                             <h2 className="text-2xl font-bold text-neutral-700">Instruções de navegação</h2>
@@ -117,6 +123,13 @@ const ResultsRoute = () => {
                             ))}
                         </ol>
                     </div>
+                    <button
+                        className="flex mx-auto justify-center gap-2 bg-central py-4 w-1/3 rounded-2xl shadow-xl cursor-pointer hover:bg-central/90"
+                        onClick={() => handleAskAi()}
+                    >
+                        <FaMagic />
+                        <p className="text-sm font-bold text-black">Pergunte a IA</p>
+                    </button>
                 </div>
             </div>
         </section>
