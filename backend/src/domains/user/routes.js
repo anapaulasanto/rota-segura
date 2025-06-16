@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-})
+});
 
 router.get('/profile', async (req, res) => {
     const { token } = req.cookies;
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar usuário' });
     }
-})
+});
 
 router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
@@ -80,7 +80,7 @@ router.post('/signup', async (req, res) => {
     } catch (error) {
         throw error;
     }
-})
+});
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -111,7 +111,11 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Erro ao fazer login: ' + error });
     }
-})
+});
+
+router.post('/logout', async (req, res) => {
+    res.clearCookie("token").json("Deslogado com sucesso")
+ });
 
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
@@ -137,7 +141,7 @@ router.put('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Erro ao atualizar usuário' });
     }
-})
+});
 
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
@@ -157,6 +161,6 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Erro ao deletar usuário' });
     }
-})
+});
 
 export default router;

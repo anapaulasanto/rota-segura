@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { TbRoute } from "react-icons/tb";
 import { FiMapPin } from "react-icons/fi";
 import { TbClockHour3 } from "react-icons/tb";
 import { LuNavigation } from "react-icons/lu";
 import { FaMagic } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
 
 import axios from "axios";
 
@@ -16,6 +17,7 @@ const mapContainerStyle = {
 };
 
 const ResultsRoute = () => {
+    const navigate = useNavigate()
     const location = useLocation();
     const [currentRoute, setCurrentRoute] = useState(location.state?.route);
     const [isLoading, setIsLoading] = useState(false);
@@ -45,8 +47,8 @@ const ResultsRoute = () => {
         }
     };
 
-    const handleAskAi = async (e) => {
-
+    const handleAskAi = () => {
+        navigate("/rota-segura/ask-ai", { state: { route: currentRoute } })
     }
 
     if (!currentRoute) {
@@ -62,9 +64,15 @@ const ResultsRoute = () => {
     }
 
     const leg = currentRoute.full_route_data.legs[0];
+    console.log("leg: ", leg);
+
 
     return (
         <section className="bg-gray-50 p-5">
+            <button onClick={() => navigate(-1)} className="flex items-center mb-2 text-neutral-400 cursor-pointer">
+                <IoIosArrowBack className="text-xl" />
+                <p className="text-sm">Voltar</p>
+            </button>
             <div className="flex h-[90vh]">
                 <GoogleMap mapContainerStyle={mapContainerStyle} center={leg.start_location} zoom={14}>
                     <Marker position={leg.start_location} />

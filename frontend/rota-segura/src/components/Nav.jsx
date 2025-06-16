@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import UserButton from './UserButton';
+import { UserContext } from '@/context/UserContext';
+import { useContext } from 'react';
 
-const Nav = ({ user }) => {
+const Nav = () => {
+    const {user, setUser} = useContext(UserContext);
+
     return (
         <nav className="bg-gray-100">
             <div className="flex justify-between items-center max-w-7xl mx-auto px-18 py-3">
@@ -19,7 +23,7 @@ const Nav = ({ user }) => {
                         </div>
                     </Link>
                 </div>
-                <UserButton user={user} />
+                <UserButton user={user} setUser={setUser} />
             </div>
         </nav>
     )

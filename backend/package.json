@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@google/genai": "^0.13.0",
+    "@google/generative-ai": "^0.24.1",
     "@googlemaps/google-maps-services-js": "^3.4.1",
     "@prisma/client": "^6.8.2",
     "bcryptjs": "^3.0.2",

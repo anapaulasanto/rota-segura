@@ -34,7 +34,7 @@ const FormRota = ({ handleSubmit, error, setOrigin, setDestination, destination,
                     {error && <p className="text-red-500 text-md mx-auto">{error}</p>}
                     <button
                         type="submit"
-                        className='bg-central rounded-full px-5 py-3 mb-20 shadow-md w-2/4 mx-auto mt-6 shadow-neutral-400 cursor-pointer hover:bg-central/70 hover:border-neutral-300 transition-all duration-200 ease-in-out text-white max-sm:w-full max-sm:text-lg'
+                        className='bg-central rounded-full px-5 py-3 mb-20 shadow-md w-2/4 mx-auto mt-6 shadow-neutral-400 cursor-pointer hover:bg-central/70 hover:border-neutral-300 transition-all duration-200 ease-in-out text-white max-sm:w-full max-sm:text-lg '
                     >Buscar rotas
                     </button>
                 </form>
