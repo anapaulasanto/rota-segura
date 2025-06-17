@@ -1,6 +1,6 @@
 import React from "react";
-import banner from "../assets/banner.jpg";
-import imgIa from "../assets/ia.png";
+import banner from "../../../assets/banner.jpg";
+import imgIa from "../../../assets/ia.png"
 import { Link } from "react-router-dom";
 import CardAbout from "./CardAbout";
 

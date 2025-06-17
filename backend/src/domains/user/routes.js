@@ -8,16 +8,6 @@ const router = Router();
 const bycryptSalt = bcrypt.genSaltSync();
 const { JWT_SECRET_KEY } = process.env;
 
-router.get('/', async (req, res) => {
-    try {
-        const users = await prisma.user.findMany()
-        res.json(users)
-
-    } catch (error) {
-        res.status(500).json(error);
-    }
-});
-
 router.get('/profile', async (req, res) => {
     const { token } = req.cookies;
 
@@ -30,26 +20,6 @@ router.get('/profile', async (req, res) => {
         });
     } else {
         res.json(null) //se não tiver token (nao estiver logado), retorna um objeto nulo
-    }
-});
-
-router.get('/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        const user = await prisma.user.findUnique({
-            where: {
-                id: id
-            }
-        })
-
-        if (!user) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
-        }
-        res.json(user);
-
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao buscar usuário' });
     }
 });
 
@@ -116,51 +86,5 @@ router.post('/login', async (req, res) => {
 router.post('/logout', async (req, res) => {
     res.clearCookie("token").json("Deslogado com sucesso")
  });
-
-router.put('/:id', async (req, res) => {
-    const { id } = req.params;
-    const { name, email, password } = req.body;
-
-    try {
-        const user = await prisma.user.update({
-            where: {
-                id: id
-            },
-            data: {
-                name,
-                email,
-                password
-            }
-        })
-
-        if (!user) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
-        }
-        res.json(user);
-
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao atualizar usuário' });
-    }
-});
-
-router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const user = await prisma.user.delete({
-            where: {
-                id: id
-            }
-        })
-
-        if (!user) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
-        }
-        res.json(user);
-
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao deletar usuário' });
-    }
-});
 
 export default router;

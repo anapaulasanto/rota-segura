@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Navigate } from 'react-router-dom';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import userImg from '../assets/user-img.png'
+import userImg from '../../../assets/user-img.png'
 import { IoIosLogOut } from "react-icons/io";
 import { FaCircleUser } from "react-icons/fa6";
 import axios from "axios";

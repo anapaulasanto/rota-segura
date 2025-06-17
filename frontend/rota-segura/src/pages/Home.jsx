@@ -1,6 +1,8 @@
-import Header from "../components/Header";
+import Header from "../components/home/Header";
 import React from "react";
-import SectionAboutHome from "@/components/SectionAboutHome";
+import SectionAboutHome from "@/components/home/sectionAboutHome/SectionAboutHome";
+import { UserContext } from '@/context/UserContext';
+import { useContext } from 'react';
 
 const Home = ({ user }) => {
   return (

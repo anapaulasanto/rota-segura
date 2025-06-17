@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
-import FormLogin from "@/components/FormLogin";
+import FormLogin from "@/components/login/FormLogin";
 import { IoIosArrowBack } from "react-icons/io";
 import { UserContext } from "@/context/UserContext";
 import { useContext } from "react";
