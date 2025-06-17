@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
-import UserRoutes from './domains/user/routes.js';
-import Routes from './domains/route/routes.js';
+import userRouter from './routes/user.routes.js';
+import routeRouter from './routes/route.routes.js';
 import cors from 'cors';
 import cookieParser from "cookie-parser"
 
@@ -15,8 +15,8 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json());
 
-app.use('/users', UserRoutes);
-app.use('/routes', Routes)
+app.use('/users', userRouter);
+app.use('/routes', routeRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
