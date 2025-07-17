@@ -37,7 +37,15 @@ A plataforma centraliza múltiplas funcionalidades, desde a busca de trajetos e 
       
 * **Troca Dinâmica de Modo de Transporte:** Na tela de detalhes, é possível alternar em tempo real entre os modos **Carro, Bicicleta e A Pé**, com a interface inteira (mapa, tempo, instruções) se atualizando dinamicamente.
   
-* **Assistente com IA (Google Gemini):** Uma página de chat dedicada onde o usuário pode fazer perguntas em linguagem natural sobre o destino ou trajeto (ex: "Onde há bicicletários perto do destino?", "Este caminho é seguro à noite?") e receber respostas geradas pela IA.
+* **Assistente com IA (Google Gemini):** Uma página de chat dedicada onde o usuário pode fazer perguntas sobre o destino ou trajeto (ex: "Onde há bicicletários perto do destino?", "Este caminho é seguro à noite?") e receber respostas geradas pela IA.
+
+---
+
+## 📸 Screenshots
+
+| Tela de Busca                                       | Tela de Detalhes da Rota                                | Assistente de IA                                    |
+| ----------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------- |
+| ![Tela de Busca de Rota](frontend/rota-segura/src/assets/buscar-rota.png) | ![Tela com Detalhes da Rota](frontend/rota-segura/src/assets/detalhe-rota.png) | ![Tela do Assistente de IA](frontend/rota-segura/src/assets/ia-rota.png) |
 
 ---
 
