@@ -13,7 +13,7 @@
 
 </div>
 
-<img alt="banner" title="banner" src="frontend/rota-segura/src/assets/readme.png">
+![Demonstração da Aplicação](frontend/rota-segura/src/assets/gif.gif)
 
 
 
